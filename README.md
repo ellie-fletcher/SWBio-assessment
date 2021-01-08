@@ -15,7 +15,7 @@ This is a pipeline written in Python to produce a list of high-scoring candidate
 Step 6 requires a judgement on the number of candidates you would like to investigate balanced by concerns about false positives. Some researchers will deem a candidate interesting if it has a PSM ratio value of 2 (2-fold increase in prescence compared to the WT PSM value), however this may yield false positives and could return more candidates than you would have time to investigate. Here, a value of 5 is used which is stringent but could remove interesting candidates. The suggested range is between 2 and 5. 
 
 4. Run steps 7-10:
-    7. Order the candidates
-    8. Retrieve NaN PSM ratio value candidates
-    9. Merge the ordered PSM ratio value and NaN PSM ratio value datasets
-    10. Export the final dataset
+        7. Order the candidates
+        8. Retrieve NaN PSM ratio value candidates
+        9. Merge the ordered PSM ratio value and NaN PSM ratio value datasets
+        10. Export the final dataset
