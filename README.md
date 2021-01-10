@@ -1,5 +1,5 @@
-## SWBio-assessment: Python assessment for Data Science and Machine Learning
-# Proteomics analysis code README
+# SWBio-assessment: Python assessment for Data Science and Machine Learning
+## Proteomics analysis code README
 
 This is a pipeline written in Python to produce a list of 'high-scoring' candidates proposed to interact with a protein of interest. A co-immunoprecipitation experiment (using a GFP-tagged version of a protein of interest) followed by Liquid Chromatography Mass Spectrometry carried out by the Proteomics Facility (University of Bristol) generated the data for this code. Data returned by the Proteomics Facility can be large (hundreds of potential interactors) and involves multiple Excel spreadsheets. This code enables efficient tidying, filtering, analysing and sorting of data to reveal the 'highest-scoring' candidates (interactors) for further analysis, which can then be exported. All data in this format can be analysed in this pipeline by changing the file name only. This code features an extension to retrieve information on a candidate from NCBI after finding the protein sequence (FASTA file format) via the exported, ordered Accession numbers. 
 
