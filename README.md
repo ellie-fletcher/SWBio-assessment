@@ -1,21 +1,15 @@
-# SWBio-assessment: Python assessment for Data Science and Machine Learning
+## SWBio-assessment: Python assessment for Data Science and Machine Learning
+# Proteomics analysis code README
 
-This is a pipeline written in Python to produce a list of 'high-scoring' candidates proposed to interact with a protein of interest. A co-immunoprecipitation experiment (using a GFP-tagged version of a protein of interest) followed by Liquid Chromatography Mass Spectrometry carried out by the Proteomics Facility (University of Bristol) generated the data for this code. Data returned by the Proteomics Facility can be large (thousands of potential interactors) and involves multiple Excel spreadsheets. This code enables efficient tidying, filtering, analysing and sorting of data to reveal the 'highest-scoring' interactors for further analysis, which can then be exported. This code features an extension to retrieve information on a candidate from NCBI after finding the protein sequence (FASTA file format) via the exported, ordered Accession numbers. 
+This is a pipeline written in Python to produce a list of 'high-scoring' candidates proposed to interact with a protein of interest. A co-immunoprecipitation experiment (using a GFP-tagged version of a protein of interest) followed by Liquid Chromatography Mass Spectrometry carried out by the Proteomics Facility (University of Bristol) generated the data for this code. Data returned by the Proteomics Facility can be large (hundreds of potential interactors) and involves multiple Excel spreadsheets. This code enables efficient tidying, filtering, analysing and sorting of data to reveal the 'highest-scoring' candidates (interactors) for further analysis, which can then be exported. All data in this format can be analysed in this pipeline by changing the file name only. This code features an extension to retrieve information on a candidate from NCBI after finding the protein sequence (FASTA file format) via the exported, ordered Accession numbers. 
 
-1. Download the Python notebook entitled 'EFassessment_code.ipynb' and the sample data entitled 'Made_up_data_2.xlsx'. The extension requires the FASTA file 'Q8LPJ4.fasta.txt' to be downloaded. All files should be downloaded into a single directory.
+1. Download the Python notebook entitled 'EFassessment_code.ipynb' and the sample data entitled 'Made_up_data_2.xlsx'. The extension requires the FASTA file 'Q8LPJ4.fasta' to be downloaded. All files should be downloaded into a single directory.
 
-2. Run steps 1-5 to:
-...1. Read in data
-...2. Tidy the data
-...3. Filter for the columns needed for the analysis
-...4. Remove candidates with low (<4) PSM values (Peptide Spectrum Matches- the total number of identified peptide sequences for the protein i.e. the number of times the protein was identified in the sample) in the GFP-MRF line. 
-...5. Create a new column containing the ratio of PSM values GFP-MRF/Col0 i.e.	the fold increase in presence of the candidate in the pull-down (GFP-MRF) compared to the WT (Col0).
+2. Run steps 1-5 to read, tidy and filter data for the columns needed in the analysis (and some extra information, including Molecular Weight and Amino Acid number will be included). Candidates will be removed if they have low (<4) PSM values (Peptide Spectrum Matches- the total number of identified peptide sequences for the protein i.e. the number of times the protein was identified in the sample) in the GFP-MRF line. A new column will be created containing the ratio of PSM values for GFP-MRF/Col0 i.e. the fold increase in abundance of the candidate in the pull-down of the GFP-tagged protein line (GFP-MRF) compared to the wild-type (Col0) untagged protein line. These steps will firstly remove candidates which have such low abundance that they are unlikely to be true MRF interactors, and then will remove candidates that were more or equally abundant in the wild-type samples (i.e. were inherently 'sticky' to the GFP antibody).
 
 3. Run step 6 to filter for high-scoring candidates:
-Step 6 requires a judgement on the number of candidates you would like to investigate balanced by concerns about false positives. Some researchers will deem a candidate interesting if it has a PSM ratio value of 2 (2-fold increase in prescence compared to the WT PSM value), however this may yield false positives and could return more candidates than you would have time to investigate. Here, a value of 5 is used which is stringent but could remove interesting candidates. The suggested range is between 2 and 5. 
+Step 6 requires a judgement on the number of candidates you would like to investigate balanced by concerns about false positives. Some researchers will deem a candidate interesting if it has a PSM ratio value of 2 (2-fold increase in presence compared to the wild-type PSM value), however this may yield false positives and could return more candidates than you would have time to investigate/read about. Here, a value of 5 is used which is stringent but could remove interesting candidates. The suggested range is between 2 and 5. 
 
-4. Run steps 7-10:
-        7. Order the candidates
-        8. Retrieve NaN PSM ratio value candidates
-        9. Merge the ordered PSM ratio value and NaN PSM ratio value datasets
-        10. Export the final dataset
+4. Run steps 7-10 to order the candidates (those with the highest PSM ratio values at the top), and to retrieve candidates with 'NaN' PSM ratio values (where the protein was not pulled-down at all in the wild-type). These datasets will then be merged and can be exported for bioinformatic analysis. 
+
+5. Extension: The Accession numbers in this dataset refer to the UniProt database, where after searching for the top candidates, a FASTA file can be downloaded for each candidate. To run this code, please use the FASTA file in this directory called 'Q8LPJ4.fasta'. Read in the file, and change the email address to your email address. The pipeline will return the Genbank identifiers for this candidate, which can be used to fetch information about the candidate from NCBI.
